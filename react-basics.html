@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Basics</title>
+</head>
+<body>
+    <div class="js-container"></div>
+
+    <!--below these two script tags load react and reactDOM-->
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <!--below these two script tags: we load the bable external library, and then we are translating the inside jsx code into js code respectively-->
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+        const button = <button>hello</button>;
+        const paragraph = <p> paragraph of texts</p>
+
+        const div = (
+            <div>
+                <button>hello</button>
+                <p>paragraph of text {2 + 2}</p>
+            </div>
+        );
+
+        //below lines sets up react and uses it. 
+        const container = document.querySelector('.js-container');
+        ReactDOM.createRoot(container).render(div);
+    </script>
+</body>
+</html>
