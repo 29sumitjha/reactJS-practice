@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter app</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        button{
+            background-color: rgb(25, 135, 84);
+            color: white;
+            border: none;
+            margin-right: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .counter-app-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(222, 222, 222);
+            height: 100vh;
+        }
+        .auto-count{
+            background-color: rgb(25, 135, 84);
+        }
+        .stop-auto-count{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev@8.6.4/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+        function App(){
+
+            const [count, setCount] = React.useState(0);
+
+            const ref = React.useRef();
+
+            const [isAutoClickOn, setISAutoClickOn] = React.useState(false);
+
+            const intervalId = React.useRef(null);
+
+            function increaseCount(){
+                setCount(count + 1);
+            }
+
+            function resetCounter(){
+                setCount(0);
+            }
+            
+            function autoIncreaseCounter(){
+                
+                if(!isAutoClickOn){
+                    setISAutoClickOn(true);
+                    
+                    intervalId.current = setInterval(()=>{
+                        const buttonElem = ref.current;
+                        if(buttonElem){
+                            buttonElem.click();
+                        }
+                    }, 1000);
+                    
+                }
+                else{
+                    
+                    clearInterval(intervalId.current);
+                    intervalId.current = null; 
+                    setCount(0);
+                    setISAutoClickOn(false);
+                }
+                
+            }
+            return(
+                <>
+
+                    <div className="counter-app-container">
+                        <button onClick={increaseCount} ref={ref}>
+                            Clicked {count} {count === 1 ? 'time' : 'times'}
+                        </button>
+
+                        <button onClick={resetCounter}>
+                            Reset
+                        </button>
+
+                        <button 
+                            className = {!isAutoClickOn ? 'auto-count' : 'stop-auto-count'}
+                            onClick={autoIncreaseCounter}
+                        >
+                            {!isAutoClickOn ? 'Auto Click' : 'Stop auto count'}
+                        </button>
+                    </div>
+                </>
+            );
+        }
+        const container = document.querySelector('.js-container');
+        ReactDOM.createRoot(container).render(<App/>);
+    </script>
+</body>
+</html>
