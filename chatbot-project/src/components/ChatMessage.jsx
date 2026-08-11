@@ -1,6 +1,11 @@
 import RobotProfileImage from '../assets/robot.png';
-import UserProfileImage from '../assets/user.png';
+
+// import UserProfileImage from '../assets/user.png';
+import UserProfileImage from '../assets/profile-1.jpeg';
+
 import './ChatMessage.css';
+
+console.log(UserProfileImage); //gives the file path
 
 export function ChatMessage({message, sender}){
     // const message = props.message;

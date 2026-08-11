@@ -3,6 +3,12 @@
     justify-content: end;
     align-items: start; 
 }
+.chat-message-profile{
+    height: 50px;
+    border-radius: 45px;
+    object-fit: cover;
+}
+
 .chat-message-robot{
     display: flex;
     /* justify-content: start; */
