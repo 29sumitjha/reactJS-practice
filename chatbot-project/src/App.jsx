@@ -7,6 +7,15 @@ import './App.css';
 
 function App(){
 
+    const [chatMessages, setChatMessages] = useState(
+        JSON.parse(localStorage.getItem('messages')) || []
+    );
+    //console.log(array);
+
+    // const [chatMessages, setChatMessages] = array;
+    // const chatMessages= array[0];
+    // const setChatMessages = array[1];
+
     useEffect(()=>{
         Chatbot.addResponses({
             'goodbye': 'Goodbye. Have a great day!',
@@ -16,12 +25,9 @@ function App(){
         });
     }, []);
 
-    const [chatMessages, setChatMessages] = useState([]);
-    //console.log(array);
-
-    // const [chatMessages, setChatMessages] = array;
-    // const chatMessages= array[0];
-    // const setChatMessages = array[1];
+    useEffect(() => {
+        localStorage.setItem('messages', JSON.stringify(chatMessages));
+    }, [chatMessages]);
 
     return (
         <div className="app-container">
