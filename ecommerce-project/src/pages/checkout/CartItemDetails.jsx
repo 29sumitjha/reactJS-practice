@@ -1,7 +1,6 @@
 import { formatMoney } from "../../utils/money";
 
 export function CartItemDetails({cartItem}){
-    console.log(cartItem);
     return (
         <>
             <img className="product-image"
